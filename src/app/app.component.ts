@@ -9,6 +9,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { Observable, map, shareReplay } from 'rxjs';
 import { NavBarButtonComponent } from './shared/components/navigation/nav-bar-button.component';
+import { AuthService } from '@auth0/auth0-angular';
+import { PageLoaderComponent } from './shared/components/page-loader.component';
 
 @Component({
   selector: 'app-root',
@@ -23,6 +25,7 @@ import { NavBarButtonComponent } from './shared/components/navigation/nav-bar-bu
     MatListModule,
     MatIconModule,
     NavBarButtonComponent,
+    PageLoaderComponent,
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
@@ -38,4 +41,7 @@ export class AppComponent {
       map((result) => result.matches),
       shareReplay()
     );
+
+  isAuth0Loading$ = this.auth.isLoading$;
+  constructor(private auth: AuthService) {}
 }

@@ -44,4 +44,5 @@ ng g component shared/components/buttons/login-button --standalone --inline-temp
 ng g component shared/components/buttons/signup-button --standalone --inline-template --skip-tests --style=none --flat --export
 ng g component shared/components/buttons/logout-button --standalone --inline-template --skip-tests --style=none --flat --export
 ng g component shared/components/navigation/nav-bar-button --standalone --skip-tests --style=none --flat --export
+ng g component shared/components/PageLoaderComponent --standalone --inline-template --skip-tests --style=none --flat --export
 ```
