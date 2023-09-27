@@ -34,4 +34,15 @@ ng g c features/Home --standalone
 # add angular material
 ng add @angular/material
 
+# add dependency
+npm install -D dotenv td-node
+
+# create callback component
+ng g component features/callback --standalone --skip-tests --style=none
+
+ng g component shared/components/buttons/login-button --standalone --inline-template --skip-tests --style=none --flat --export
+ng g component shared/components/buttons/signup-button --standalone --inline-template --skip-tests --style=none --flat --export
+ng g component shared/components/buttons/logout-button --standalone --inline-template --skip-tests --style=none --flat --export
+ng g component shared/components/navigation/nav-bar-button --standalone --skip-tests --style=none --flat --export
+ng g component shared/components/PageLoaderComponent --standalone --inline-template --skip-tests --style=none --flat --export
 ```

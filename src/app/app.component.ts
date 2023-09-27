@@ -6,8 +6,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { RouterOutlet } from '@angular/router';
+import { RouterModule, RouterOutlet } from '@angular/router';
 import { Observable, map, shareReplay } from 'rxjs';
+import { NavBarButtonComponent } from './shared/components/navigation/nav-bar-button.component';
+import { AuthService } from '@auth0/auth0-angular';
+import { PageLoaderComponent } from './shared/components/page-loader.component';
 
 @Component({
   selector: 'app-root',
@@ -15,11 +18,14 @@ import { Observable, map, shareReplay } from 'rxjs';
   imports: [
     CommonModule,
     RouterOutlet,
+    RouterModule,
     MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,
     MatListModule,
     MatIconModule,
+    NavBarButtonComponent,
+    PageLoaderComponent,
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
@@ -35,4 +41,8 @@ export class AppComponent {
       map((result) => result.matches),
       shareReplay()
     );
+
+  isAuth0Loading$ = this.auth.isLoading$;
+  isAuthenticated$ = this.auth.isAuthenticated$;
+  constructor(private auth: AuthService) {}
 }
