@@ -34,4 +34,9 @@ ng g c features/Home --standalone
 # add angular material
 ng add @angular/material
 
+# add dependency
+npm install -D dotenv td-node
+
+# create callback component
+ng g component features/callback --standalone --skip-tests --style=none
 ```

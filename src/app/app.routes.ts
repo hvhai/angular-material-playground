@@ -10,4 +10,11 @@ export const routes: Routes = [
     path: 'home',
     component: HomeComponent,
   },
+  {
+    path: 'callback',
+    loadComponent: () =>
+      import('./features/callback/callback.component').then(
+        (mod) => mod.CallbackComponent
+      ),
+  },
 ];
