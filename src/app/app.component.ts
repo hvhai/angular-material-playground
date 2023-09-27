@@ -43,5 +43,6 @@ export class AppComponent {
     );
 
   isAuth0Loading$ = this.auth.isLoading$;
+  isAuthenticated$ = this.auth.isAuthenticated$;
   constructor(private auth: AuthService) {}
 }

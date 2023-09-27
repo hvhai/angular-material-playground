@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './features/home/home.component';
+import { AuthGuard } from '@auth0/auth0-angular';
 
 export const routes: Routes = [
   {
@@ -16,6 +17,7 @@ export const routes: Routes = [
       import('./features/profile/profile.component').then(
         (mod) => mod.ProfileComponent
       ),
+    canActivate: [AuthGuard],
   },
   {
     path: 'callback',
