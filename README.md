@@ -31,4 +31,7 @@ npx npm-check-updates --upgrade --target "minor" --filter "/@angular.*/"
 # create home page
 ng g c features/Home --standalone
 
+# add angular material
+ng add @angular/material
+
 ```
