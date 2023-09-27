@@ -8,6 +8,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { Observable, map, shareReplay } from 'rxjs';
+import { NavBarButtonComponent } from './shared/components/navigation/nav-bar-button.component';
 
 @Component({
   selector: 'app-root',
@@ -21,6 +22,7 @@ import { Observable, map, shareReplay } from 'rxjs';
     MatSidenavModule,
     MatListModule,
     MatIconModule,
+    NavBarButtonComponent,
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],

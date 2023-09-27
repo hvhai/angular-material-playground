@@ -11,6 +11,13 @@ export const routes: Routes = [
     component: HomeComponent,
   },
   {
+    path: 'profile',
+    loadComponent: () =>
+      import('./features/profile/profile.component').then(
+        (mod) => mod.ProfileComponent
+      ),
+  },
+  {
     path: 'callback',
     loadComponent: () =>
       import('./features/callback/callback.component').then(

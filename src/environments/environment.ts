@@ -4,7 +4,7 @@ export const environment = {
     domain: 'dev-codehunter.auth0.com',
     clientId: 'sNYVOrixNb0ZyE0WZnxvurbuOYTmX9SK',
     authorizationParams: {
-      redirect_uri: 'http://localhost:8080/callback',
+      redirect_uri: 'http://localhost:4200/callback',
     },
   },
   api: {
