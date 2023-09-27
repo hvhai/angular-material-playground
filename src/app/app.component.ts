@@ -25,7 +25,7 @@ import { Observable, map, shareReplay } from 'rxjs';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'angular-material-playground';
+  appName = 'Angular Material Playground';
 
   private breakpointObserver = inject(BreakpointObserver);
 
