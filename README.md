@@ -45,4 +45,8 @@ ng g component shared/components/buttons/signup-button --standalone --inline-tem
 ng g component shared/components/buttons/logout-button --standalone --inline-template --skip-tests --style=none --flat --export
 ng g component shared/components/navigation/nav-bar-button --standalone --skip-tests --style=none --flat --export
 ng g component shared/components/PageLoaderComponent --standalone --inline-template --skip-tests --style=none --flat --export
+
+# intergrate CoundownTimer BE
+ng g component features/CountdownEvent --standalone --skip-tests --style=none
+ng g component features/countdown-event/event-card --standalone --skip-tests --style=none
 ```
