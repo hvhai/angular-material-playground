@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { AppEvent, DEFAULT_APP_EVENT } from 'src/app/core/models';
 
 @Component({
   selector: 'app-event-card',
@@ -9,4 +10,6 @@ import { MatCardModule } from '@angular/material/card';
   imports: [CommonModule, MatCardModule, MatButtonModule],
   templateUrl: './event-card.component.html',
 })
-export class EventCardComponent {}
+export class EventCardComponent {
+  @Input() event: AppEvent = { ...DEFAULT_APP_EVENT };
+}

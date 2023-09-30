@@ -1,5 +1,7 @@
 <p>countdown-event works!</p>
 
-<app-event-card />
+<ng-container *ngFor="let event of eventList$ | async as eventList">
+  <app-event-card [event]="event"/>
+</ng-container>
 
 <button mat-button (click)="createEvent()">Create</button>

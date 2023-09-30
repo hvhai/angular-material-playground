@@ -5,6 +5,7 @@ import { EventServiceApi } from 'src/app/core/services';
 import { EventCardComponent } from './event-card/event-card.component';
 import { AppEvent } from 'src/app/core/models';
 import { EventService } from 'src/app/core/services/adapter';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-countdown-event',
@@ -14,6 +15,8 @@ import { EventService } from 'src/app/core/services/adapter';
   providers: [{ provide: EventServiceApi, useClass: EventService }],
 })
 export class CountdownEventComponent {
+  eventList$: Observable<AppEvent[]>;
+
   createEvent() {
     const event: AppEvent = {
       __typename: 'AppEvent',
@@ -25,5 +28,7 @@ export class CountdownEventComponent {
       console.log(res);
     });
   }
-  constructor(private eventService: EventServiceApi) {}
+  constructor(private eventService: EventServiceApi) {
+    this.eventList$ = this.eventService.getAll();
+  }
 }
