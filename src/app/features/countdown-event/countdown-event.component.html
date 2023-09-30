@@ -1,7 +1,6 @@
-<p>countdown-event works!</p>
+<button mat-button routerLink="/create-event">Create</button>
 
 <ng-container *ngFor="let event of eventList$ | async as eventList">
   <app-event-card [event]="event"/>
 </ng-container>
 
-<button mat-button (click)="createEvent()">Create</button>

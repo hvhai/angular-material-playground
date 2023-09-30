@@ -49,6 +49,11 @@ ng g component shared/components/PageLoaderComponent --standalone --inline-templ
 # intergrate CoundownTimer BE
 ng g component features/CountdownEvent --standalone --skip-tests --style=none
 ng g component features/countdown-event/event-card --standalone --skip-tests --style=none
+
+ng g component features/create-event --standalone --skip-tests --style=none
+
+# add datetime picker 
+npm install --save  @angular-material-components/datetime-picker
 ```
 
 
