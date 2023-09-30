@@ -1,25 +1,29 @@
-import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { EventServiceApi } from 'src/app/core/services';
 import { EventCardComponent } from './event-card/event-card.component';
-import { MatButton, MatButtonModule } from '@angular/material/button';
-import { EventService } from 'src/app/core/services/event.service';
+import { AppEvent } from 'src/app/core/models';
+import { EventService } from 'src/app/core/services/adapter';
 
 @Component({
   selector: 'app-countdown-event',
   standalone: true,
   imports: [CommonModule, EventCardComponent, MatButtonModule],
-  templateUrl: './countdown-event.component.html'
+  templateUrl: './countdown-event.component.html',
+  providers: [{ provide: EventServiceApi, useClass: EventService }],
 })
 export class CountdownEventComponent {
-
-  createEvent(){
-    this.eventService.add({'time': new Date(), title: 'test'}).subscribe( res =>{
+  createEvent() {
+    const event: AppEvent = {
+      __typename: 'AppEvent',
+      id: 1,
+      time: new Date(),
+      title: 'test',
+    };
+    this.eventService.add(event).subscribe((res) => {
       console.log(res);
     });
   }
-  constructor(private eventService: EventService) {
-
-  }
-
-
+  constructor(private eventService: EventServiceApi) {}
 }

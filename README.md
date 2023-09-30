@@ -50,3 +50,15 @@ ng g component shared/components/PageLoaderComponent --standalone --inline-templ
 ng g component features/CountdownEvent --standalone --skip-tests --style=none
 ng g component features/countdown-event/event-card --standalone --skip-tests --style=none
 ```
+
+
+
+```shell
+curl --request POST \
+  --url 'https://dev-codehunter.auth0.com/oauth/token' \
+  --header 'content-type: application/x-www-form-urlencoded' \
+  --data grant_type=client_credentials \
+  --data client_id=wd61mwqqg9EcXNf6fUHc0A5RK4neW9ra \
+  --data client_secret=4fUN7k-Cw8-bd_-0mhiQPtrjqBEELX-Y2UQG2Wgr-GUJJKLaT8knwqmlcsRA9pmz \
+  --data audience=https://countdown-timer-api/api/
+```
