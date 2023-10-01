@@ -20,6 +20,22 @@ export const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
+    path: 'events',
+    loadComponent: () =>
+      import('./features/countdown-event/countdown-event.component').then(
+        (mod) => mod.CountdownEventComponent
+      ),
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'create-event',
+    loadComponent: () =>
+      import('./features/create-event/create-event.component').then(
+        (mod) => mod.CreateEventComponent
+      ),
+    canActivate: [AuthGuard],
+  },
+  {
     path: 'callback',
     loadComponent: () =>
       import('./features/callback/callback.component').then(

@@ -1,0 +1,25 @@
+<form [formGroup]="addEventForm" (submit)="createEvent()">
+  <mat-form-field>
+    <mat-label>Event Title</mat-label>
+    <input matInput placeholder="Event Title" formControlName="title" />
+    <mat-hint>Title of the event</mat-hint>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Date and time</mat-label>
+    <mat-hint>The moment of event</mat-hint>
+    <input
+      matInput
+      formControlName="time"
+      [ngxMatDatetimePicker]="picker"
+      placeholder="Choose a date"
+    />
+    <ngx-mat-datepicker-toggle
+      matSuffix
+      [for]="picker"
+    ></ngx-mat-datepicker-toggle>
+    <ngx-mat-datetime-picker #picker> </ngx-mat-datetime-picker>
+  </mat-form-field>
+  <button mat-raised-button type="submit" [disabled]="!addEventForm.valid">
+    Submit
+  </button>
+</form>
