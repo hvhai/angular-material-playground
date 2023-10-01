@@ -23,6 +23,7 @@ export const appConfig: ApplicationConfig = {
         httpInterceptor: {
           allowedList: [
             `${environment.api.serverUrl}/event`,
+            `${environment.api.serverUrl}/event/*`,
           ],
         },
       })

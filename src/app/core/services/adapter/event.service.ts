@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { Observable, catchError, map } from 'rxjs';
 import { environment as env } from '../../../../environments/environment';
 import { EventServiceApi } from '../event.service.api';
 import { AppEvent } from '../../models';
@@ -33,6 +33,19 @@ export class EventService extends EventServiceApi {
       );
   }
 
+  delete(eventId: number): Observable<boolean> {
+    return this.httpClient
+      .delete<EventServiceDto.DeleteEventResponse>(
+        `${env.api.serverUrl}/event/${eventId}`
+      )
+      .pipe(
+        map((res) => {
+          return true;
+        }),
+        catchError(async (err) => false)
+      );
+  }
+
   getAll(): Observable<AppEvent[]> {
     return this.httpClient
       .get<EventServiceDto.GetAllEventResponse>(`${env.api.serverUrl}/event`)
@@ -52,14 +65,24 @@ export class EventService extends EventServiceApi {
       );
   }
 
-  constructor(private httpClient: HttpClient) {
-    super();
+  update(event: AppEvent): Observable<AppEvent> {
+    const body: EventServiceDto.UpdateEventRequest = {
+      time: event.time,
+      title: event.title,
+    };
+    return this.httpClient
+      .put<EventServiceDto.UpdateEventResponse>(
+        `${env.api.serverUrl}/event/${event.id}`,
+        body
+      )
+      .pipe(
+        map((res) => {
+          return event;
+        })
+      );
   }
 
-  delete(eventId: number): Observable<boolean> {
-    throw new Error('Method not implemented.');
-  }
-  update(event: AppEvent): Observable<AppEvent> {
-    throw new Error('Method not implemented.');
+  constructor(private httpClient: HttpClient) {
+    super();
   }
 }

@@ -2,6 +2,6 @@
 
 <div class="container-flex">
   <ng-container *ngFor="let event of eventList$ | async as eventList">
-    <app-event-card [event]="event" />
+    <app-event-card [event]="event" (deleteButtonClicked)="deleteEvent($event)" />
   </ng-container>
 </div>

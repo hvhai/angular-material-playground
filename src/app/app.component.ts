@@ -11,6 +11,7 @@ import { Observable, map, shareReplay } from 'rxjs';
 import { NavBarButtonComponent } from './shared/components/navigation/nav-bar-button.component';
 import { AuthService } from '@auth0/auth0-angular';
 import { PageLoaderComponent } from './shared/components/page-loader.component';
+import { routes } from './app.routes';
 
 @Component({
   selector: 'app-root',
