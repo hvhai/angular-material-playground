@@ -6,6 +6,7 @@ import { AppEvent, DEFAULT_APP_EVENT } from 'src/app/core/models';
 
 @Component({
   selector: 'app-event-card',
+  styleUrls: ['./event-card.component.css'],
   standalone: true,
   imports: [CommonModule, MatCardModule, MatButtonModule],
   templateUrl: './event-card.component.html',

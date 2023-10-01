@@ -11,13 +11,13 @@ import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-countdown-event',
   standalone: true,
-  imports: [CommonModule, EventCardComponent, MatButtonModule, RouterLink],
   templateUrl: './countdown-event.component.html',
+  styleUrls: ['./countdown-event.component.css'],
+  imports: [CommonModule, EventCardComponent, MatButtonModule, RouterLink],
   providers: [{ provide: EventServiceApi, useClass: EventService }],
 })
 export class CountdownEventComponent {
   eventList$: Observable<AppEvent[]>;
-
 
   constructor(private eventService: EventServiceApi) {
     this.eventList$ = this.eventService.getAll();
