@@ -64,6 +64,6 @@ curl --request POST \
   --header 'content-type: application/x-www-form-urlencoded' \
   --data grant_type=client_credentials \
   --data client_id=wd61mwqqg9EcXNf6fUHc0A5RK4neW9ra \
-  --data client_secret=4fUN7k-Cw8-bd_-0mhiQPtrjqBEELX-Y2UQG2Wgr-GUJJKLaT8knwqmlcsRA9pmz \
+  --data client_secret=$CLIENTSECRET \
   --data audience=https://countdown-timer-api/api/
 ```
