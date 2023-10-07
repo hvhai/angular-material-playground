@@ -5,7 +5,13 @@ import { EventServiceApi } from 'src/app/core/services';
 import { EventCardComponent } from './event-card/event-card.component';
 import { AppEvent } from 'src/app/core/models';
 import { EventService } from 'src/app/core/services/adapter';
-import { Observable } from 'rxjs';
+import {
+  Observable,
+  Subject,
+  combineLatest,
+  combineLatestAll,
+  switchMap,
+} from 'rxjs';
 import { Router, RouterLink, RouterModule } from '@angular/router';
 
 @Component({
@@ -28,9 +34,9 @@ export class CountdownEventComponent {
 
   deleteEvent(eventId: number): void {
     console.log('delete event emitted from child: ', eventId);
-    this.eventService
+    this.eventList$ = this.eventService
       .delete(eventId)
-      .subscribe({ complete: () => this.init() });
+      .pipe(switchMap((id) => this.eventService.getAll()));
   }
 
   constructor(private eventService: EventServiceApi) {
