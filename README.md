@@ -1,6 +1,8 @@
 # AngularMaterialPlayground
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.3.
+# App deploy
+[GitHub Page](https://hvhai.github.io/angular-material-playground/home)
 
 ## Code scaffolding
 
