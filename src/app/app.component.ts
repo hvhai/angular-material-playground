@@ -12,6 +12,7 @@ import { NavBarButtonComponent } from './shared/components/navigation/nav-bar-bu
 import { AuthService } from '@auth0/auth0-angular';
 import { PageLoaderComponent } from './shared/components/page-loader.component';
 import { routes } from './app.routes';
+import { NgHttpLoaderModule } from 'ng-http-loader';
 
 @Component({
   selector: 'app-root',
@@ -27,6 +28,7 @@ import { routes } from './app.routes';
     MatIconModule,
     NavBarButtonComponent,
     PageLoaderComponent,
+    NgHttpLoaderModule,
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],

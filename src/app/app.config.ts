@@ -1,11 +1,12 @@
 import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
-import { routes } from './app.routes';
-import { provideAnimations } from '@angular/platform-browser/animations';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { provideAnimations } from '@angular/platform-browser/animations';
 import { AuthHttpInterceptor, AuthModule } from '@auth0/auth0-angular';
+import { NgHttpLoaderModule } from 'ng-http-loader';
 import { environment } from 'src/environments/environment';
+import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -18,6 +19,7 @@ export const appConfig: ApplicationConfig = {
     },
     importProvidersFrom(
       HttpClientModule,
+      NgHttpLoaderModule.forRoot(),
       AuthModule.forRoot({
         ...environment.auth0,
         httpInterceptor: {

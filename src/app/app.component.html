@@ -34,6 +34,7 @@
       <app-nav-bar-button />
     </mat-toolbar>
     <!-- Add Content Here -->
+    <ng-http-loader></ng-http-loader>
     <div class="page-layout" *ngIf="isAuth0Loading$ | async; else auth0Loaded">
       <app-page-loader></app-page-loader>
     </div>
