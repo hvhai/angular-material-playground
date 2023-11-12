@@ -41,7 +41,7 @@ export class CreateEventComponent {
   createEvent() {
     const event: AppEvent = {
       ...DEFAULT_APP_EVENT,
-      time: this.addEventForm.value.time ?? new Date(),
+      time: this.addEventForm.value.time ? new Date(this.addEventForm.value.time) : new Date(),
       title: this.addEventForm.value.title ?? '',
     };
     console.log(event);
