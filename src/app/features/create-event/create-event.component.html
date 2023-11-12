@@ -7,17 +7,7 @@
   <mat-form-field>
     <mat-label>Date and time</mat-label>
     <mat-hint>The moment of event</mat-hint>
-    <input
-      matInput
-      formControlName="time"
-      [ngxMatDatetimePicker]="picker"
-      placeholder="Choose a date"
-    />
-    <ngx-mat-datepicker-toggle
-      matSuffix
-      [for]="picker"
-    ></ngx-mat-datepicker-toggle>
-    <ngx-mat-datetime-picker #picker> </ngx-mat-datetime-picker>
+    <input matInput type="datetime-local" placeholder="start date" formControlName="time"/>
   </mat-form-field>
   <button mat-raised-button type="submit" [disabled]="!addEventForm.valid">
     Submit

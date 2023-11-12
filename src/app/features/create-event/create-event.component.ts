@@ -1,24 +1,19 @@
+import { CommonModule, NgIf } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { Router, RouterModule } from '@angular/router';
 import {
   FormControl,
   FormGroup,
+  FormsModule,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { NgIf } from '@angular/common';
-import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { AutofillMonitor } from '@angular/cdk/text-field';
-import {
-  NgxMatDatetimePickerModule,
-  NgxMatNativeDateModule,
-} from '@angular-material-components/datetime-picker';
+import { MatInputModule } from '@angular/material/input';
+import { Router, RouterModule } from '@angular/router';
+import { AppEvent, DEFAULT_APP_EVENT } from 'src/app/core/models';
 import { EventServiceApi } from 'src/app/core/services';
 import { EventService } from 'src/app/core/services/adapter';
-import { AppEvent, DEFAULT_APP_EVENT } from 'src/app/core/models';
 
 @Component({
   selector: 'app-create-event',
@@ -31,8 +26,7 @@ import { AppEvent, DEFAULT_APP_EVENT } from 'src/app/core/models';
     MatInputModule,
     NgIf,
     MatButtonModule,
-    NgxMatDatetimePickerModule,
-    NgxMatNativeDateModule,
+    FormsModule,
   ],
   templateUrl: './create-event.component.html',
   providers: [{ provide: EventServiceApi, useClass: EventService }],
