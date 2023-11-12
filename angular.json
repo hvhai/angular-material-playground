@@ -71,10 +71,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "angular-material-playground:build:production"
+              "buildTarget": "angular-material-playground:build:production"
             },
             "development": {
-              "browserTarget": "angular-material-playground:build:development"
+              "buildTarget": "angular-material-playground:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -82,7 +82,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angular-material-playground:build"
+            "buildTarget": "angular-material-playground:build"
           }
         },
         "test": {
