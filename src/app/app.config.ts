@@ -30,6 +30,9 @@ export const appConfig: ApplicationConfig = {
           allowedList: [
             `${environment.api.serverUrl}/event`,
             `${environment.api.serverUrl}/event/*`,
+            `${environment.api.serverUrl}/events`,
+            `${environment.api.serverUrl}/events/*`,
+            `${environment.api.serverUrl}/admin/*`,
           ],
         },
       })

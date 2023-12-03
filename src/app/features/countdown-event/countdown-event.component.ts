@@ -1,18 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { EventServiceApi } from 'src/app/core/services';
-import { EventCardComponent } from './event-card/event-card.component';
-import { AppEvent } from 'src/app/core/models';
-import { EventService } from 'src/app/core/services/adapter';
-import {
-  Observable,
-  Subject,
-  combineLatest,
-  combineLatestAll,
-  switchMap,
-} from 'rxjs';
 import { Router, RouterLink, RouterModule } from '@angular/router';
+import { Observable, switchMap } from 'rxjs';
+import { AppEvent } from 'src/app/core/models';
+import { EventServiceApi } from 'src/app/core/services';
+import { EventModulithService } from 'src/app/core/services/adapter/event.modulith-service';
+import { EventCardComponent } from './event-card/event-card.component';
 
 @Component({
   selector: 'app-countdown-event',
@@ -26,7 +20,7 @@ import { Router, RouterLink, RouterModule } from '@angular/router';
     RouterLink,
     RouterModule,
   ],
-  providers: [{ provide: EventServiceApi, useClass: EventService }],
+  providers: [{ provide: EventServiceApi, useClass: EventModulithService }],
 })
 export class CountdownEventComponent {
   eventList$: Observable<AppEvent[]>;

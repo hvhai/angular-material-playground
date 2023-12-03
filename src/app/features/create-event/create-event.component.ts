@@ -13,7 +13,7 @@ import { MatInputModule } from '@angular/material/input';
 import { Router, RouterModule } from '@angular/router';
 import { AppEvent, DEFAULT_APP_EVENT } from 'src/app/core/models';
 import { EventServiceApi } from 'src/app/core/services';
-import { EventService } from 'src/app/core/services/adapter';
+import { EventModulithService } from 'src/app/core/services/adapter/event.modulith-service';
 
 @Component({
   selector: 'app-create-event',
@@ -29,7 +29,7 @@ import { EventService } from 'src/app/core/services/adapter';
     FormsModule,
   ],
   templateUrl: './create-event.component.html',
-  providers: [{ provide: EventServiceApi, useClass: EventService }],
+  providers: [{ provide: EventServiceApi, useClass: EventModulithService }],
 })
 export class CreateEventComponent {
   addEventForm = new FormGroup({
@@ -41,7 +41,9 @@ export class CreateEventComponent {
   createEvent() {
     const event: AppEvent = {
       ...DEFAULT_APP_EVENT,
-      time: this.addEventForm.value.time ? new Date(this.addEventForm.value.time) : new Date(),
+      time: this.addEventForm.value.time
+        ? new Date(this.addEventForm.value.time)
+        : new Date(),
       title: this.addEventForm.value.title ?? '',
     };
     console.log(event);
