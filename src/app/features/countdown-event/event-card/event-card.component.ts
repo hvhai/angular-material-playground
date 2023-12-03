@@ -14,10 +14,17 @@ import { AppEvent, DEFAULT_APP_EVENT } from 'src/app/core/models';
 export class EventCardComponent {
   @Input() event: AppEvent = { ...DEFAULT_APP_EVENT };
   @Output() deleteButtonClicked = new EventEmitter<number>();
+  @Output() updateButtonClicked = new EventEmitter<number>();
 
   deleteEvent(id: number) {
     if (id != null && id != undefined) {
       this.deleteButtonClicked.emit(id);
+    }
+  }
+
+  updateEvent(id: number) {
+    if (id != null && id != undefined) {
+      this.updateButtonClicked.emit(id);
     }
   }
 }

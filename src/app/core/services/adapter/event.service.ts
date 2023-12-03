@@ -82,6 +82,10 @@ export class EventService extends EventServiceApi {
       );
   }
 
+  override getById(id: number): Observable<AppEvent> {
+    throw new Error('Method not implemented.');
+  }
+
   constructor(private httpClient: HttpClient) {
     super();
   }

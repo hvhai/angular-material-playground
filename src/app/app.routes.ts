@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './features/home/home.component';
 import { AuthGuard } from '@auth0/auth0-angular';
+import { HomeComponent } from './features/home/home.component';
 
 export const routes: Routes = [
   {
@@ -32,6 +32,14 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./features/create-event/create-event.component').then(
         (mod) => mod.CreateEventComponent
+      ),
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'update-event/:id',
+    loadComponent: () =>
+      import('./features/update-event/update-event.component').then(
+        (mod) => mod.UpdateEventComponent
       ),
     canActivate: [AuthGuard],
   },

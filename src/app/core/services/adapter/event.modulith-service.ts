@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, map } from 'rxjs';
 import { environment as env } from '../../../../environments/environment';
-import { EventServiceApi } from '../event.service.api';
 import { AppEvent } from '../../models';
+import { EventServiceApi } from '../event.service.api';
 import * as EventModulithServiceDto from './event.modulith-service.dto';
 
 @Injectable({
@@ -33,12 +33,14 @@ export class EventModulithService extends EventServiceApi {
   }
 
   delete(eventId: number): Observable<boolean> {
-    return this.httpClient.delete(`${env.api.serverUrl}/events/${eventId}`).pipe(
-      map((res) => {
-        return true;
-      }),
-      catchError(async (err) => false)
-    );
+    return this.httpClient
+      .delete(`${env.api.serverUrl}/events/${eventId}`)
+      .pipe(
+        map((res) => {
+          return true;
+        }),
+        catchError(async (err) => false)
+      );
   }
 
   getAll(): Observable<AppEvent[]> {
@@ -64,18 +66,38 @@ export class EventModulithService extends EventServiceApi {
 
   update(event: AppEvent): Observable<AppEvent> {
     const body: EventModulithServiceDto.UpdateEventRequest = {
-      id: event.id,
       dateTime: event.time,
       name: event.title,
     };
     return this.httpClient
-      .put<EventModulithServiceDto.ApiResponse<EventModulithServiceDto.EventDto>>(
-        `${env.api.serverUrl}/event/${event.id}`,
-        body
-      )
+      .put<
+        EventModulithServiceDto.ApiResponse<EventModulithServiceDto.EventDto>
+      >(`${env.api.serverUrl}/events/${event.id}`, body)
       .pipe(
         map((res) => {
-          return event;
+          return {
+            __typename: 'AppEvent',
+            id: res.data.id,
+            time: res.data.dateTime,
+            title: res.data.name,
+          };
+        })
+      );
+  }
+
+  override getById(id: number): Observable<AppEvent> {
+    return this.httpClient
+      .get<
+        EventModulithServiceDto.ApiResponse<EventModulithServiceDto.EventDto>
+      >(`${env.api.serverUrl}/events/${id}`)
+      .pipe(
+        map((res) => {
+          return {
+            __typename: 'AppEvent',
+            id: res.data.id,
+            time: res.data.dateTime,
+            title: res.data.name,
+          };
         })
       );
   }

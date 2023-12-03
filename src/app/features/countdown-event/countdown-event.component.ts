@@ -33,6 +33,12 @@ export class CountdownEventComponent {
       .pipe(switchMap((id) => this.eventService.getAll()));
   }
 
+  moveToUpdateEvent(eventId: number): void {
+    console.log('update event emitted from child: ', eventId);
+    this.router.navigateByUrl("/update-event/" + eventId )
+    // this.router.navigate(['/update-event', { id: eventId }]);
+  }
+
   constructor(private eventService: EventServiceApi) {
     // this.init();
     this.eventList$ = this.eventService.getAll();

@@ -6,4 +6,5 @@ export abstract class EventServiceApi {
   abstract delete(eventId: number): Observable<boolean>;
   abstract add(event: AppEvent): Observable<AppEvent>;
   abstract update(event: AppEvent): Observable<AppEvent>;
+  abstract getById(id: number): Observable<AppEvent>;
 }

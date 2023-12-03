@@ -20,7 +20,7 @@ export interface EventDto {
 }
 
 export interface UpdateEventRequest {
-  id: number;
+  id?: number;
   name?: string;
   dateTime?: Date;
 }

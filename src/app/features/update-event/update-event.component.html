@@ -1,0 +1,27 @@
+<h2>Update Event</h2>
+<form [formGroup]="updateEventForm" (submit)="updateEvent()">
+  <mat-form-field>
+    <mat-label>Event Title</mat-label>
+    <input matInput placeholder="Event Title" formControlName="title" />
+    <mat-hint>Title of the event</mat-hint>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Date and time</mat-label>
+    <mat-hint>The moment of event</mat-hint>
+    <input
+      matInput
+      type="datetime-local"
+      placeholder="start date"
+      formControlName="time"
+      value="{{ updatedEvent?.time | date : 'yyyy-MM-ddThh:mm' }}"
+    />
+  </mat-form-field>
+  <button mat-raised-button type="submit" [disabled]="!updateEventForm.valid">
+    Submit
+  </button>
+</form>
+
+<!-- [value]="(updatedEvent$ | async)?.time | date: 'yyyy-MM-ddThh:mm'" -->
+<!-- value="{{ (updatedEvent$ | async)?.time | date }}" -->
+<!-- value="{{ (updatedEvent$ | async)?.title }}" -->
+<!-- [value]="(updatedEvent$ | async)?.title" -->
