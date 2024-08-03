@@ -15,6 +15,7 @@ import { Observable, map, shareReplay } from 'rxjs';
 import { NavBarButtonComponent } from './shared/components/navigation/nav-bar-button.component';
 import { PageLoaderComponent } from './shared/components/page-loader.component';
 import { SpinnerComponent } from './shared/components/spinner/spinner.component';
+import { MatTableModule } from '@angular/material/table';
 
 @Component({
   selector: 'app-root',
@@ -34,6 +35,7 @@ import { SpinnerComponent } from './shared/components/spinner/spinner.component'
     SpinnerComponent,
     MatFormFieldModule,
     MatInputModule,
+    MatTableModule,
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],

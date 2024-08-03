@@ -20,6 +20,7 @@ const envConfigFile = `export const environment = {
   },
   api: {
     serverUrl: '${process.env['API_SERVER_URL']}',
+    foodOrderingApiUrl: '${process.env['FOOD_ORDERING_API_SERVER_URL']}',
   },
 };
 `;
