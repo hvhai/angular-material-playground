@@ -39,6 +39,9 @@ export interface FruitsOrderingProductDto {
 export function toFruitsOrderingPayment(
   apiPayment: FruitsOrderingPaymentDto
 ): FruitsOrderingPayment {
+  if (apiPayment == null || apiPayment == undefined) {
+    return apiPayment;
+  }
   return {
     __typename: 'FruitsOrderingPayment',
     id: apiPayment.id,
@@ -51,6 +54,9 @@ export function toFruitsOrderingPayment(
 export function toFruitsOrderingProduct(
   apiProduct: FruitsOrderingProductDto
 ): FruitsOrderingProduct {
+  if (apiProduct == null || apiProduct == undefined) {
+    return apiProduct;
+  }
   return {
     __typename: 'FruitsOrderingProduct',
     id: apiProduct.id,
@@ -73,6 +79,10 @@ export function toFruitsOrderingProductList(
 export function toFruitsOrderingOrder(
   apiOrder: FruitsOrderingOrderDto
 ): FruitsOrderingOrder {
+  if (apiOrder == null || apiOrder == undefined) {
+    return apiOrder;
+  }
+
   return {
     __typename: 'FruitsOrderingOrder',
     id: apiOrder.id,

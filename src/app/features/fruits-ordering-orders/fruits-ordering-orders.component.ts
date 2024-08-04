@@ -24,10 +24,13 @@ export class FruitsOrderingOrdersComponent {
   dataSource$: Observable<FruitsOrderingOrder[]>;
 
   purchaseOrder(order: FruitsOrderingOrder): void {
-    console.log('order :', order);
     this.dataSource$ = this.fruiteOrderingService
       .purchasePayment(order.payment.id)
       .pipe(switchMap((result) => this.fruiteOrderingService.getAllOrders()));
+  }
+
+  isPurchasable(order: FruitsOrderingOrder): boolean {
+    return order.orderStatus != 'DONE' && order.orderStatus != 'CANCELED';
   }
 
   constructor(private fruiteOrderingService: FruitsOrderingServiceApi) {

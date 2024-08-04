@@ -27,7 +27,7 @@
       <button mat-raised-button color="primary" routerLink="/create-event">
         Detail
       </button>
-      <button mat-raised-button color="accent" (click)="purchaseOrder(element)">
+      <button *ngIf="isPurchasable(element)" mat-raised-button color="accent" (click)="purchaseOrder(element)">
         Purchase
       </button>
     </td>
