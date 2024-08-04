@@ -1,8 +1,11 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { CommonModule, NgIf } from '@angular/common';
-import { FruitsOrderingOrder } from 'src/app/core/models/order.fruits-ordering.model';
-import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
+import { MatTableModule } from '@angular/material/table';
+import { Observable } from 'rxjs';
+import { FruitsOrderingOrder } from 'src/app/core/models';
+import { FruitsOrderingServiceApi } from 'src/app/core/services';
+import { FruitsOrderingModulithService } from 'src/app/core/services/adapter';
 
 const ORDER_DATA: FruitsOrderingOrder[] = [
   {
@@ -37,14 +40,21 @@ const ORDER_DATA: FruitsOrderingOrder[] = [
 @Component({
   selector: 'app-fruits-ordering-orders',
   standalone: true,
-  imports: [
-    CommonModule,
-    MatButtonModule,
-    MatTableModule,
-  ],
+  imports: [CommonModule, MatButtonModule, MatTableModule],
   templateUrl: './fruits-ordering-orders.component.html',
+  providers: [
+    {
+      provide: FruitsOrderingServiceApi,
+      useClass: FruitsOrderingModulithService,
+    },
+  ],
 })
 export class FruitsOrderingOrdersComponent {
   displayedColumns: string[] = ['id', 'orderStatus', 'totalAmount', 'action'];
-  dataSource = ORDER_DATA;
+  // dataSource = ORDER_DATA;
+  dataSource$: Observable<FruitsOrderingOrder[]>;
+  constructor(private fruiteOrderingService: FruitsOrderingServiceApi) {
+    // this.init();
+    this.dataSource$ = this.fruiteOrderingService.getAllOrders();
+  }
 }

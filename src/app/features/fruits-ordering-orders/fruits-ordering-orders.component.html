@@ -1,5 +1,5 @@
 <h1>All Orders</h1>
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<table mat-table [dataSource]="dataSource$" class="mat-elevation-z8">
   <!--- Note that these columns can be defined in any order.
         The actual rendered columns are set as a property on the row definition" -->
 
@@ -24,7 +24,7 @@
   <ng-container matColumnDef="action">
     <th mat-header-cell *matHeaderCellDef>Amount</th>
     <td mat-cel *matCellDef="let element">
-      <button mat-raised-button routerLink="/create-event">Detail</button>
+      <button mat-raised-button color="primary" routerLink="/create-event">Detail</button>
     </td>
   </ng-container>
 
