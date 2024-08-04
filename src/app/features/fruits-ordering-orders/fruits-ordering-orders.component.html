@@ -24,7 +24,12 @@
   <ng-container matColumnDef="action">
     <th mat-header-cell *matHeaderCellDef>Amount</th>
     <td mat-cel *matCellDef="let element">
-      <button mat-raised-button color="primary" routerLink="/create-event">Detail</button>
+      <button mat-raised-button color="primary" routerLink="/create-event">
+        Detail
+      </button>
+      <button mat-raised-button color="accent" (click)="purchaseOrder(element)">
+        Purchase
+      </button>
     </td>
   </ng-container>
 
