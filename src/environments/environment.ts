@@ -10,5 +10,6 @@ export const environment = {
   },
   api: {
     serverUrl: 'http://localhost:8080/api/countdown-timer',
+    fruitsOrderingApiUrl: 'http://localhost:8080/api/fruit-ordering',
   },
 };

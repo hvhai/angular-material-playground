@@ -44,6 +44,13 @@ export const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
+    path: 'fruits-ordering-order',
+    loadComponent: () =>
+      import('./features/fruits-ordering-orders/fruits-ordering-orders.component').then(
+        (mod) => mod.FruitsOrderingOrdersComponent),
+    canActivate: [AuthGuard],
+  },
+  {
     path: 'callback',
     loadComponent: () =>
       import('./features/callback/callback.component').then(

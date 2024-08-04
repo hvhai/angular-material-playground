@@ -33,6 +33,7 @@ export const appConfig: ApplicationConfig = {
             `${environment.api.serverUrl}/events`,
             `${environment.api.serverUrl}/events/*`,
             `${environment.api.serverUrl}/admin/*`,
+            `${environment.api.fruitsOrderingApiUrl}/*`,
           ],
         },
       })
