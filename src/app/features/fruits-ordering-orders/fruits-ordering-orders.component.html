@@ -1,4 +1,7 @@
 <h1>All Orders</h1>
+<button mat-raised-button color="primary" routerLink="/fruits-ordering/create-order">
+  New Order
+</button>
 <table mat-table [dataSource]="dataSource$" class="mat-elevation-z8">
   <!--- Note that these columns can be defined in any order.
         The actual rendered columns are set as a property on the row definition" -->
@@ -27,7 +30,12 @@
       <button mat-raised-button color="primary" routerLink="/create-event">
         Detail
       </button>
-      <button *ngIf="isPurchasable(element)" mat-raised-button color="accent" (click)="purchaseOrder(element)">
+      <button
+        *ngIf="isPurchasable(element)"
+        mat-raised-button
+        color="accent"
+        (click)="purchaseOrder(element)"
+      >
         Purchase
       </button>
     </td>

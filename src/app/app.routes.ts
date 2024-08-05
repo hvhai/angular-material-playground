@@ -44,10 +44,19 @@ export const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'fruits-ordering-order',
+    path: 'fruits-ordering',
     loadComponent: () =>
-      import('./features/fruits-ordering-orders/fruits-ordering-orders.component').then(
-        (mod) => mod.FruitsOrderingOrdersComponent),
+      import(
+        './features/fruits-ordering-orders/fruits-ordering-orders.component'
+      ).then((mod) => mod.FruitsOrderingOrdersComponent),
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'fruits-ordering/create-order',
+    loadComponent: () =>
+      import(
+        './features/fruits-ordering-create-order/fruits-ordering-create-order.component'
+      ).then((mod) => mod.FruitsOrderingCreateOrderComponent),
     canActivate: [AuthGuard],
   },
   {
