@@ -1,10 +1,11 @@
 import { CommonModule, NgIf } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import {
   FormArray,
   FormBuilder,
   FormsModule,
   ReactiveFormsModule,
+  Validators,
 } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -15,6 +16,7 @@ import { Observable } from 'rxjs';
 import { FruitsOrderingProduct } from 'src/app/core/models';
 import { FruitsOrderingServiceApi } from 'src/app/core/services';
 import { FruitsOrderingModulithService } from 'src/app/core/services/adapter';
+import { duplicateValueValidator } from 'src/app/shared/directives/duplicate-value.directive';
 
 @Component({
   selector: 'app-fruits-ordering-create-order',
@@ -43,7 +45,10 @@ import { FruitsOrderingModulithService } from 'src/app/core/services/adapter';
 export class FruitsOrderingCreateOrderComponent implements OnInit {
   productDataSource$: Observable<FruitsOrderingProduct[]>;
   addOrderForm = this.formBuilder.group({
-    products: this.formBuilder.array([this.formBuilder.control('')]),
+    products: this.formBuilder.array(
+      [],
+      [Validators.required, Validators.minLength(1), duplicateValueValidator()]
+    ),
   });
   router = inject(Router);
 
@@ -53,6 +58,7 @@ export class FruitsOrderingCreateOrderComponent implements OnInit {
 
   addProduct() {
     this.products.push(this.formBuilder.control(''));
+    this.changeDetectorRef.detectChanges();
   }
 
   removeProduct(index: number) {
@@ -74,7 +80,8 @@ export class FruitsOrderingCreateOrderComponent implements OnInit {
 
   constructor(
     private fruitsOrderingService: FruitsOrderingServiceApi,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    protected changeDetectorRef: ChangeDetectorRef
   ) {
     this.productDataSource$ = this.fruitsOrderingService.getAllProducts();
   }
