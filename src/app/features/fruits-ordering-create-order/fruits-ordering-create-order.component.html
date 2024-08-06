@@ -1,8 +1,9 @@
 <h2>Create Order</h2>
 <form [formGroup]="addOrderForm" (submit)="createOrder()">
-  <div *ngIf="addOrderForm.hasError('duplicatedIds')">
+  <mat-error *ngIf="products.hasError('duplicatedValues')">
     Do not accept duplicate product
-  </div>
+  </mat-error>
+
   <div formArrayName="products">
     <button mat-raised-button type="button" (click)="addProduct()">
       Add Product
