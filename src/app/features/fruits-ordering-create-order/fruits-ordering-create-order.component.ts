@@ -55,6 +55,10 @@ export class FruitsOrderingCreateOrderComponent implements OnInit {
     this.products.push(this.formBuilder.control(''));
   }
 
+  removeProduct(index: number) {
+    this.products.removeAt(index);
+  }
+
   ngOnInit(): void {
     // Create an empty form group
   }
