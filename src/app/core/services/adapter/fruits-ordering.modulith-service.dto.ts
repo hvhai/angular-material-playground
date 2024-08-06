@@ -36,6 +36,14 @@ export interface FruitsOrderingProductDto {
   quantity: number;
 }
 
+export interface FruitsOrderingCreateOrderRequestDto {
+  products: FruitsOrderingCreateOrderRequestProductDto[];
+}
+
+export interface FruitsOrderingCreateOrderRequestProductDto {
+  id: string;
+}
+
 export function toFruitsOrderingPayment(
   apiPayment: FruitsOrderingPaymentDto
 ): FruitsOrderingPayment {

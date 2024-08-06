@@ -4,13 +4,15 @@ import {
   FormArray,
   FormBuilder,
   FormsModule,
-  ReactiveFormsModule
+  ReactiveFormsModule,
 } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { Router, RouterModule } from '@angular/router';
+import { Observable } from 'rxjs';
+import { FruitsOrderingProduct } from 'src/app/core/models';
 import { FruitsOrderingServiceApi } from 'src/app/core/services';
 import { FruitsOrderingModulithService } from 'src/app/core/services/adapter';
 
@@ -39,6 +41,7 @@ import { FruitsOrderingModulithService } from 'src/app/core/services/adapter';
   ],
 })
 export class FruitsOrderingCreateOrderComponent implements OnInit {
+  productDataSource$: Observable<FruitsOrderingProduct[]>;
   addOrderForm = this.formBuilder.group({
     products: this.formBuilder.array([this.formBuilder.control('')]),
   });
@@ -58,11 +61,17 @@ export class FruitsOrderingCreateOrderComponent implements OnInit {
 
   createOrder() {
     console.log('create order');
-    console.warn(this.addOrderForm.value);
+    console.warn(this.addOrderForm.value.products);
+    let productIds = this.addOrderForm.value.products as string[];
+    this.fruitsOrderingService.createOrder(productIds).subscribe({
+      complete: () => this.router.navigateByUrl('/fruits-ordering'),
+    });
   }
 
   constructor(
-    private orderService: FruitsOrderingServiceApi,
+    private fruitsOrderingService: FruitsOrderingServiceApi,
     private formBuilder: FormBuilder
-  ) {}
+  ) {
+    this.productDataSource$ = this.fruitsOrderingService.getAllProducts();
+  }
 }
