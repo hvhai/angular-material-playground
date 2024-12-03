@@ -37,7 +37,11 @@ export class FruitsOrderingOrdersComponent {
   }
 
   isPurchasable(order: FruitsOrderingOrder): boolean {
-    return order.orderStatus != 'DONE' && order.orderStatus != 'CANCELED';
+    return (
+      order.orderStatus != 'DONE' &&
+      order.orderStatus != 'CANCELED' &&
+      order.orderStatus != 'IN_PRODUCT_PREPARE'
+    );
   }
 
   constructor(private fruiteOrderingService: FruitsOrderingServiceApi) {
