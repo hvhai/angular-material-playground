@@ -11,6 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { MatTableModule } from '@angular/material/table';
 import { Router, RouterModule } from '@angular/router';
 import { Observable } from 'rxjs';
 import { FruitsOrderingProduct } from 'src/app/core/models';
@@ -28,6 +29,7 @@ import { duplicateValueValidator } from 'src/app/shared/directives/duplicate-val
     MatFormFieldModule,
     MatInputModule,
     NgIf,
+    MatTableModule,
     MatButtonModule,
     FormsModule,
     MatFormFieldModule,
@@ -43,6 +45,7 @@ import { duplicateValueValidator } from 'src/app/shared/directives/duplicate-val
   ],
 })
 export class FruitsOrderingCreateOrderComponent implements OnInit {
+  displayedColumns: string[] = ['position', 'name', 'price', 'quantity'];
   productDataSource$: Observable<FruitsOrderingProduct[]>;
   addOrderForm = this.formBuilder.group({
     products: this.formBuilder.array(
