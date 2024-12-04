@@ -16,7 +16,7 @@
             *ngFor="let item of productDataSource$ | async"
             value="{{ item.id }}"
           >
-            {{ item.name }}
+            {{ item.name }} (In Stock: {{ item.quantity}})
           </mat-option>
         </mat-select>
       </mat-form-field>
