@@ -3,7 +3,7 @@ import { TodoNote } from '../models';
 
 export abstract class TodoServiceApi {
   abstract getAll(): Observable<TodoNote[]>;
-  abstract delete(id: number): Observable<boolean>;
+  abstract delete(id: string): Observable<boolean>;
   abstract add(note: TodoNote): Observable<TodoNote>;
   abstract update(note: TodoNote): Observable<TodoNote>;
   abstract markAsDone(id: string): Observable<TodoNote>;

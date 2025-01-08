@@ -1,22 +1,20 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef, Component } from '@angular/core';
+import {
+  FormBuilder,
+  ReactiveFormsModule,
+  Validators
+} from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { MatTableModule } from '@angular/material/table';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { RouterLink, RouterModule } from '@angular/router';
-import { BehaviorSubject, Observable, switchMap, tap } from 'rxjs';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatTableModule } from '@angular/material/table';
+import { RouterModule } from '@angular/router';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { DEFAULT_APP_TODO, TodoNote } from 'src/app/core/models';
 import { TodoService } from 'src/app/core/services/adapter/todo.service';
 import { TodoServiceApi } from 'src/app/core/services/todo.service.api';
-import {
-  FormArray,
-  FormBuilder,
-  FormsModule,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-todos',
@@ -26,7 +24,6 @@ import { MatInputModule } from '@angular/material/input';
     MatButtonModule,
     MatCheckboxModule,
     MatTableModule,
-    RouterLink,
     RouterModule,
     ReactiveFormsModule,
     MatFormFieldModule,
@@ -41,6 +38,7 @@ import { MatInputModule } from '@angular/material/input';
   ],
 })
 export class TodosComponent {
+  DEFAULT_TODO_FORM_VALUE = { id: '', note: '' };
   private dataSubject: BehaviorSubject<TodoNote[]> = new BehaviorSubject<
     TodoNote[]
   >([]);
@@ -48,8 +46,10 @@ export class TodosComponent {
 
   displayedColumns: string[] = ['id', 'note', 'done'];
   todoForm = this.formBuilder.group({
+    id: '',
     note: this.formBuilder.control('', Validators.required),
   });
+  isEdit: boolean = false;
 
   constructor(
     private todoService: TodoServiceApi,
@@ -75,14 +75,36 @@ export class TodosComponent {
   }
 
   addNote() {
-    console.log('add note');
     this.todoForm.value.note;
+    var apiCall = this.isEdit
+      ? this.todoService.update({
+          ...DEFAULT_APP_TODO,
+          id: this.todoForm.value.id!,
+          note: this.todoForm.value.note!,
+        })
+      : this.todoService.add({
+          ...DEFAULT_APP_TODO,
+          note: this.todoForm.value.note!,
+        });
+    apiCall
+      .pipe(
+        tap((data) => {
+          this.fetchData();
+          this.todoForm.setValue(this.DEFAULT_TODO_FORM_VALUE);
+        })
+      )
+      .subscribe();
+  }
+
+  removeNote(note: TodoNote): void {
     this.todoService
-      .add({
-        ...DEFAULT_APP_TODO,
-        note: this.todoForm.value.note!,
-      })
+      .delete(note.id)
       .pipe(tap((data) => this.fetchData()))
       .subscribe();
+  }
+
+  showEditForm(note: TodoNote): void {
+    this.isEdit = true;
+    this.todoForm.setValue({ id: note.id, note: note.note });
   }
 }

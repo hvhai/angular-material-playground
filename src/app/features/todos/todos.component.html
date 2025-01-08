@@ -42,6 +42,8 @@
         (change)="markAsDone($event.checked, element.id)"
       >
       </mat-checkbox>
+      <button mat-button (click)="removeNote(element)">❌</button>
+      <button mat-button (click)="showEditForm(element)">✏️</button>
     </td>
   </ng-container>
 

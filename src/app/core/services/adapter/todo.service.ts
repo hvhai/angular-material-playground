@@ -50,7 +50,7 @@ export class TodoService extends TodoServiceApi {
       );
   }
 
-  delete(todoId: number): Observable<boolean> {
+  delete(todoId: string): Observable<boolean> {
     return this.httpClient.delete(`${env.api.todoApiUrl}/${todoId}`).pipe(
       map((res) => {
         return true;
