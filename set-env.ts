@@ -21,6 +21,7 @@ const envConfigFile = `export const environment = {
   api: {
     serverUrl: '${process.env['API_SERVER_URL']}',
     fruitsOrderingApiUrl: '${process.env['FOOD_ORDERING_API_SERVER_URL']}',
+    todoApiUrl: '${process.env['TODO_API_SERVER_URL']}',
   },
 };
 `;

@@ -60,6 +60,14 @@ export const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
+    path: 'todos',
+    loadComponent: () =>
+      import(
+        './features/todos/todos.component'
+      ).then((mod) => mod.TodosComponent),
+    canActivate: [AuthGuard],
+  },
+  {
     path: 'callback',
     loadComponent: () =>
       import('./features/callback/callback.component').then(
