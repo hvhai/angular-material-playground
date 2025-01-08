@@ -13,7 +13,7 @@ export class TodoService extends TodoServiceApi {
   override markAsDone(id: string): Observable<TodoNote> {
     return this.httpClient
       .patch<TodoServiceDto.TodoApiResponse<TodoServiceDto.TodoDto>>(
-        `${env.api.todoApiUrl}`,
+        `${env.api.todoApiUrl}/${id}/done`,
         null
       )
       .pipe(
@@ -50,7 +50,7 @@ export class TodoService extends TodoServiceApi {
       );
   }
 
-  delete(todoId: number): Observable<boolean> {
+  delete(todoId: string): Observable<boolean> {
     return this.httpClient.delete(`${env.api.todoApiUrl}/${todoId}`).pipe(
       map((res) => {
         return true;
