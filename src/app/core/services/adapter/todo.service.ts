@@ -13,7 +13,7 @@ export class TodoService extends TodoServiceApi {
   override markAsDone(id: string): Observable<TodoNote> {
     return this.httpClient
       .patch<TodoServiceDto.TodoApiResponse<TodoServiceDto.TodoDto>>(
-        `${env.api.todoApiUrl}`,
+        `${env.api.todoApiUrl}/${id}/done`,
         null
       )
       .pipe(

@@ -1,4 +1,22 @@
 <p>todos works!</p>
+<form [formGroup]="todoForm" (submit)="addNote()">
+  <mat-form-field>
+    <mat-label>Note</mat-label>
+    <input matInput placeholder="Note details" formControlName="note" />
+    <mat-hint>Note details</mat-hint>
+  </mat-form-field>
+  <br />
+  <button
+    mat-raised-button
+    type="submit"
+    color="primary"
+    [disabled]="!todoForm.valid"
+  >
+    Submit
+  </button>
+</form>
+<hr />
+
 <table mat-table [dataSource]="dataSource$" class="mat-elevation-z8">
   <!--- Note that these columns can be defined in any order.
         The actual rendered columns are set as a property on the row definition" -->
@@ -21,7 +39,7 @@
       <mat-checkbox
         class="example-margin"
         [checked]="element.isDone"
-        (change)="markAsDone($event.checked)"
+        (change)="markAsDone($event.checked, element.id)"
       >
       </mat-checkbox>
     </td>
